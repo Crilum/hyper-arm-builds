@@ -81,7 +81,7 @@ jobs:
             cd ./hyper &&
             sed -i '/\"electron\":/c\    \"electron\" : \"^17.0.0\",' package.json &&
             sed -i 's/\          \"arm64\"/\n          \"armv7l\"/g' electron-builder.json &&
-            sed -i ' s/'cflags': [ '-Wall', '-Wextra', '-Wno-unused-parameter', ],/'cflags': [ '-Wall', '-Wextra', '-Wno-unused-parameter', '-march=armv7'],/' $HOME/.electron-gyp/*/include/node/common.gypi
+            sed -i "s/'cflags': [ '-Wall', '-Wextra', '-Wno-unused-parameter', ],/'cflags': [ '-Wall', '-Wextra', '-Wno-unused-parameter', '-march=armv7'],/" $HOME/.electron-gyp/*/include/node/common.gypi
             yarn --network-timeout 1000000 &&
             USE_SYSTEM_FPM=true yarn run dist --armv7l &&
             mkdir -p ../pkgs &&
